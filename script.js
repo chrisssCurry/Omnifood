@@ -93,23 +93,7 @@ $('.js--waypoint-5').waypoint(function(direction) {
 }, {
   offset: '80%'
 });
-
-/*Map*/
-var map = new GMaps({
-  div: '.map',
-  lat: 46.11456760781492,
-  lng: 24.138396781361365,
-  zoom: 7
-});
-
-map.addMarker({
-  lat: 46.16926977724763,
-  lng: 23.273190393291934,
-  title: 'Romania',
-  infoWindow: {
-    content: '<p>Our HQ</p>'
-  }
-});
+    
 
 /*Mobile nav*/
 $('.js--nav-icon').click(function() {
