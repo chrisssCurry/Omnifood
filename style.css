@@ -647,25 +647,11 @@ select:focus,
 textarea:focus {outline: 1px solid orange;} /*Creates a square orange border around the element*/
 .btn-full:focus {outline: none;}/*Cancels the above border for the "Send" button*/
 
-.map-box {
-    width: 100%;
-    height: 700px;
-    position: relative;
-}
-
-.map {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    z-index: 0;
-}
-
 .form-box {
+    align-self: center;
     padding-top:70px;
-    position: absolute;
     width: 50%;
-    top: 0;
-    right: 0;
+    margin: 0 auto;
     background-color: rgba(255, 255, 255, 0.75);
     z-index: 0;
     height: 100%;
@@ -679,6 +665,7 @@ textarea:focus {outline: 1px solid orange;} /*Creates a square orange border aro
     margin-bottom: 20px;
     color: #333;
 }
+
 
 .success {
     background-color: rgba(38, 191, 68, 0.7);
