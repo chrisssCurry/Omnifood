@@ -334,6 +334,7 @@ header {
     margin:5px 0;
 }
 
+
 .logo-black:hover,
 .logo-black:active {
     border:0.5px solid rgb(211, 138, 2);
@@ -374,8 +375,8 @@ header {
     width: 25%;
 }
 
-
 .meal-photo {
+    position: relative;
     width: 100%;
     margin:0;
     overflow: hidden;
@@ -383,17 +384,47 @@ header {
 }
 
 .meal-photo img {
-    opacity: 0.5;
     width: 100%;
     height: auto;
+    opacity: 1;
     transform: scale(1.15);
     transition: transform 0.5s, opacity 0.5s;
 }
 
 .meal-photo img:hover {
     transform: scale(1.03); /*no tiny whitespace inbetween up and down rows*/
-    opacity: 1;
-    
+    opacity: 0.3;
+}
+
+
+/*Text over image effect*/
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #000;
+}
+
+.meal-photo:hover .overlay {
+    opacity: 0.8;
+}
+
+.meal-name {
+    font-family: 'Dancing Script', cursive;
+    color: #fff;
+    position: absolute;
+    transform: translate(30%, -450%);
+    text-align: center;
+    font-size: 2rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /*==========================================================*/
@@ -421,7 +452,7 @@ header {
 }
 
 .app-screen {
-    width: 50%;
+    width: 80%;
 }
 
 .works-step {
@@ -601,10 +632,10 @@ cite img {
 
 .plan-box:hover,
 .plan-box:active {
-    border:2px solid orange;
+    border:1px solid orange;
     margin-top:-30px;
     cursor: pointer;
-    transition: margin 0.5s;
+    transition: all 0.5s;
 }
 
 .plan-box ul {
@@ -647,12 +678,47 @@ select:focus,
 textarea:focus {outline: 1px solid orange;} /*Creates a square orange border around the element*/
 .btn-full:focus {outline: none;}/*Cancels the above border for the "Send" button*/
 
+.map-box {
+    width: 100%;
+    height: 700px;
+    position: relative;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 0;
+}
+
+/* Popup width is defined in JS using options */
+.leaflet-popup .leaflet-popup-content-wrapper {
+    background-color: #2d3439;
+    color: #ececec;
+    padding: 0;
+  }
+  
+  .leaflet-popup .leaflet-popup-content {
+    font-size: 1.5rem;
+    padding: 0;
+  }
+  
+  .leaflet-popup .leaflet-popup-tip {
+    background-color: #2d3439;
+    padding: 0%;
+  }
+
+  .leaflet-popup-close-button {
+    display: none; 
+ }
+
 .form-box {
-    align-self: center;
     padding-top:70px;
+    position: absolute;
     width: 50%;
-    margin: 0 auto;
-    background-color: rgba(255, 255, 255, 0.75);
+    top: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.85);
     z-index: 0;
     height: 100%;
 }
@@ -665,7 +731,6 @@ textarea:focus {outline: 1px solid orange;} /*Creates a square orange border aro
     margin-bottom: 20px;
     color: #333;
 }
-
 
 .success {
     background-color: rgba(38, 191, 68, 0.7);
@@ -763,10 +828,75 @@ footer p {
         padding: 0 5%;
     }
 
-    .app-screen { width: 100%; }
+    .feature-row,
+    .cities-row {
+    position: relative;
+    max-width: 70%;
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+    justify-content: center;
+    
+}
 
+.meals-showcase {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
+.meals-showcase li {
+    width: 100%;
+}
 
+.meal-name {
+    font-size: 3rem;
+}
+
+    .features .col {
+        margin: 0 0 10% 0;
+    }
+
+    .cities-row .col {
+        margin: -10% 0 15% 0;
+    }
+
+    .features .col:hover,
+    .features .col:active  {
+        margin-top: auto;
+        border:0;
+        cursor: auto;
+        transform: scale(1);
+    }
+
+    .plan-box:hover,
+    .plan-box:active {
+        margin-top: auto;
+        border:0;
+        cursor: auto;
+}
+
+    .app-screen {
+        width: 30%;
+    }
+
+    .steps-box:first-child {
+        text-align: center;
+        padding-right: 3%;
+        margin-top: 30px;
+    }
+
+    .cities-row {
+        margin-left: 20%;
+        text-align: left;
+    }
+
+    .cities-row .col img {
+        margin-bottom: 15px;
+        width: 80%;
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 /*Small tablet to big tablet:from 768 to 1023*/
@@ -779,12 +909,72 @@ footer p {
         margin-left: 10%;
     }
 
+    .feature-row,
+    .cities-row {
+    position: relative;
+    max-width: 70%;
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+    justify-content: center;
+    
+}
+
+.meals-showcase {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.meals-showcase li {
+    width: 100%;
+}
+
+.meal-name {
+    font-size: 3rem;
+}
+
+    .features .col {
+        margin: 0 0 10% 0;
+    }
+
+    .cities-row .col {
+        margin: -10% 0 15% 0;
+    }
+
+    .features .col:hover,
+    .features .col:active  {
+        margin-top: auto;
+        border:0;
+        cursor: auto;
+        transform: scale(1);
+    }
+
+    .meal-name {
+        font-size: 2rem;
+    }
+
+    .plan-box:hover,
+    .plan-box:active {
+        margin-top: auto;
+        border:0;
+        cursor: auto;
+}
+
     .steps-box { margin-top: 10px; }
     .works-steps { margin-bottom: 10px;}
     .steps-box:last-child { margin-bottom: 40px;}
     .works-step:last-child { margin-bottom: 60px;}
 
-    .app-screen { width: 100%; }
+    .app-screen {
+        width: 30%;
+    }
+
+    .steps-box:first-child {
+        text-align: center;
+        padding-right: 3%;
+        margin-top: 30px;
+    }
 
     .icon-small {
         width: 15px;
@@ -796,7 +986,23 @@ footer p {
         left: 0%;
     }
 
-    .city-feature {font-size: 80%;}
+    .city-feature {font-size: 100%;}
+
+    .cities-row {
+        text-align: left;
+    }
+
+    .cities-row .col img {
+        margin-bottom: 15px;
+        width: 100%;
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .cities-row h3 {
+        font-size: 150%;
+        left: 0%;
+    }
 
     .plan-box {
         width: 100%;
@@ -822,6 +1028,10 @@ footer p {
         margin-top: 20px;
     }
 
+    .logo img {
+        margin-left: 500px;
+    }
+
     .feature-row,
     .cities-row {
     position: relative;
@@ -831,6 +1041,20 @@ footer p {
     margin: 0px auto;
     justify-content: center;
     
+}
+
+.meals-showcase {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.meals-showcase li {
+    width: 100%;
+}
+
+.meal-name {
+    font-size: 2rem;
 }
 
     .features .col {
@@ -873,7 +1097,6 @@ footer p {
     blockquote {
     pointer-events: none;
 }
-
 
     .main-nav {
         display: none;
@@ -943,7 +1166,7 @@ footer p {
         margin: 0 0;
     }
     .works-step {
-        margin-bottom: 10px;
+        margin-bottom: 50px;
     }
     .works-step { margin-top: 20px; }
     .works-step:last-of-type,
@@ -970,7 +1193,7 @@ footer p {
 
     }
     
-    .map {
+    #map {
         width: 100%;
         height: 300px;
         position: relative;
@@ -991,35 +1214,19 @@ footer p {
     input[type=checkbox] {
         margin: 0;
     }
+
     .additional-row {
         margin-top: 15px;
         margin-bottom: 5px;
         width: 100%;
         display: flex;
-        flex-direction: row;
-    }
-
- .footer-row {
-    margin-top: 15px;
-    margin-bottom: 5px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-    .footer-nav {
-        margin-left:15%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .social-links {
         margin-top:30px;
-        margin-left:40%
-    }
-
-    footer p {
-        margin-top: 20px;
     }
 
 }
@@ -1060,15 +1267,13 @@ footer p {
 /*========================ANIMATIONS====================*/
 /*==========================================================*/
 
-.js--waypoint-1,
-.js--waypoint-2,
-.js--waypoint-3{
+
+.hidden {
     opacity: 0;
     animation-duration:1s ;
 }
 
 .js--waypoint-4 {animation-duration: 1s;}
-
 .js--waypoint-1 .animated,
 .js--waypoint-2 .animated,
 .js--waypoint-3 .animated {
